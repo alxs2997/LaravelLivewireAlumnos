@@ -4,6 +4,9 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Alumno;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
+
 
 class Alumnos extends Component
 {
@@ -12,65 +15,90 @@ class Alumnos extends Component
     public $modal = false;
 
     
-    public function render()
+    public function index()
     {
-        $this->alumnos = Alumno::all();
-        return view('livewire.alumnos');
+        //
+        $alumnos = Alumno::all();
+        return view('livewire.alumnos', compact('alumnos'));
     }
 
-    public function crear()
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        $this->limpiarCampos();
-        $this->abrirModal();
+        //
+        return view('livewire.create');
     }
 
-    public function abrirModal() {
-        $this->modal = true;
-    }
-    public function cerrarModal() {
-        $this->modal = false;
-    }
-    public function limpiarCampos(){
-        $this-> nombre = '';
-        $this-> code = '';
-        $this-> n_tel = '';
-        $this-> direccion = '';
-        $this-> mail = '';
-    }
-    public function editar($id)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        $alumnos = Alumno::findOrFail($id);
-        $this->id = $id;
-        $this->nombre = $alumnos->nombre;
-        $this->code = $alumnos->code;
-        $this->n_tel = $alumnos->n_tel;
-        $this->direccion = $alumnos->direccion;
-        $this->mail = $alumnos->mail;
-        $this->abrirModal();
+        //
+        $datos=$request->all();
+        Log::info($datos);
+        Alumno::create($datos);
+
+        $alumnos = Alumno::all();
+        return view('livewire.alumnos', compact('alumnos'));
+       
     }
 
-    public function borrar($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Alumnos $id)
     {
-        Alumno::find($id)->delete();
-        session()->flash('message', 'Registro eliminado correctamente');
+        //
+        return view('alumnos.show', compact('alumnos'));
     }
 
-    public function guardar()
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Alumnos $alumnos)
     {
-            Alumno::updateOrCreate(['id'=>$this->id],
-            [
-                'nombre' => $this->name,
-                'code' => $this->code,
-                'n_tel'=>$this->n_tel,
-                'direccion'=>$this->direccion,
-                'mail'=>$this->mail,
-            ]);
-         
-         session()->flash('message',
-            $this->id ? '¡Actualización exitosa!' : '¡Alta Exitosa!');
-         
-         $this->cerrarModal();
-         $this->limpiarCampos();
+        //
+        return view('alumnos.edit', compact('alumnos'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateAlumnoRequest $request, Alumno $alumnos)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Alumnos $alumnos)
+    {
+        //
+        $alumnos->delete();
+
+        return redirect()->route('alumnos.index');
+
     }
 }
-   

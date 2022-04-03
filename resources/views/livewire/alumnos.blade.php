@@ -19,10 +19,10 @@
                 </div>
             </div>
         @endif
-            <button wire:click="crear()" class="bg-info hover:bg-info text-white font-bold py-2 px-4 my-3">Nuevo </button>
-        @if($modal)
-            @include('livewire.crear')   
-        @endif    
+             <a href="{{route('alumnos.create')}}" class="btn bg-info hover:bg-info text-white font-bold py-2 px-4 my-3">Nuevo </a>
+       
+            @include('livewire.create')   
+  
                 <table class="table-fixed w-full">
                     <thead>
                         <tr class="bg-indigo-600 text-white">

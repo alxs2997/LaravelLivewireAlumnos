@@ -14,14 +14,13 @@ use App\Http\Livewire\Alumnos;
 |
 */
 
-//Route::resource('alumnos',Alumnos::class)->middleware('auth');
+Route::resource('alumnos',Alumnos::class)->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function (){
-    Route::get('/alumnos', Alumnos::class);
     Route::get('/dashboard', function(){
         return view('dashboard');
     })->name('dashboard');
