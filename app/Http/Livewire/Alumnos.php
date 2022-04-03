@@ -57,10 +57,11 @@ class Alumnos extends Component
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Alumnos $id)
+    public function show(Alumno $alumnos)
     {
-        //
-        return view('alumnos.show', compact('alumnos'));
+        // 
+        
+        return view('livewire.show', compact('alumnos'));
     }
 
     /**
