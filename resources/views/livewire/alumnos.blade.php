@@ -45,8 +45,8 @@
                             <td class="border px-4 py-2">{{$alumno->n_tel}}</td>
                             <td class="border px-4 py-2">{{$alumno->correo}}</td>
                             <td class="border px-4 py-2">
-                    <form action="{{URL::to ('/alumnos'.$alumnos->id)}}" method="POST">
-                        <a href="{{url('/alumnos/'.$alumnos->id)}}" title="show">
+                    <form action="" method="POST">
+                        <a href="{{url('/alumnos/')}}" title="show">
                             <i class="fas fa-eye text-indigo fa-lg"></i>
                         </a>
                         |

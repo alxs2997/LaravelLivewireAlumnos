@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>{{$alumno->id}}</h2>
+                <h2>{{$alumnos->id}}</h2>
             </div>
         </div>
         @include('livewire.show')   
@@ -16,7 +16,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nombre:</strong>
-                {{$alumno->name}}
+                {{$alumnos->name}}
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Codigo:</strong>
-                {{$alumno->code}}
+                {{$alumnos->code}}
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Dirección:</strong>
-                {{$alumno->direccion}}
+                {{$alumnos->direccion}}
             </div>
         </div>
     </div>
@@ -40,13 +40,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Telefono:</strong>
-                {{$alumno->n_tel}}
+                {{$alumnos->n_tel}}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Correo:</strong>
-                {{$alumno->correo}}
+                {{$alumnos->correo}}
             </div>
         </div>
     </div>
