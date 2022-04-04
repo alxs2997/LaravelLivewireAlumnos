@@ -1,6 +1,4 @@
-<div>
-    {{-- Do your work, then step back. --}}
-    <x-app-layout>
+<x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
                 Listado De Alumnos
@@ -19,9 +17,12 @@
                 </div>
             </div>
         @endif
-             <a href="{{route('alumnos.create')}}" class="btn bg-info hover:bg-info text-white font-bold py-2 px-4 my-3">Nuevo </a>
-       
-            @include('livewire.create')   
+    <div class="block mb-8">
+        <div class="pull-right">
+            <a href="{{ URL::to('alumnos/create') }}" class="btn btn-info">Añadir Alumno<i class="fas fa-plus-circle"></i></a>
+            </div>
+    </div>    
+            @include('livewire.create') 
   
                 <table class="table-fixed w-full">
                     <thead>
@@ -32,7 +33,7 @@
                             <th class="border px-4 py-2 text-center">Dirección </th>
                             <th class="border px-4 py-2 text-center">Teléfono </th>
                             <th class="border px-4 py-2 text-center">Mail </th>
-                            <th class="border px-4 py-2 text-center" width="280px">Mantenimiento</th>
+                            <th class="border px-4 py-2 text-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,7 +47,7 @@
                             <td class="border px-4 py-2">{{$alumno->correo}}</td>
                             <td class="border px-4 py-2">
                     <form action="" method="POST">
-                        <a href="{{url('/alumnos/')}}" title="show">
+                        <a href="{{ route('alumnos.show', $alumno->id) }}" title="show">
                             <i class="fas fa-eye text-indigo fa-lg"></i>
                         </a>
                         |
@@ -70,5 +71,3 @@
         </div>
     </div>
 </x-app-layout>
-
-</div>

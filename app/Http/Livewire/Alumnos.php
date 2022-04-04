@@ -83,11 +83,17 @@ class Alumnos extends Component
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAlumnoRequest $request, Alumno $alumnos)
+    public function update(Request $request, $id)
+    
     {
-        //
-    }
-
+        $alumnoss=Alumno::find($id);
+        $alumnos->name = $request->name;
+        $alumnos->code = $request->code;
+        $alumnos->direccion = $request->direccion;
+        $alumnos->n_tel = $request->n_tel;
+        $alumnos->save();
+        return redirect('alumnos');
+    }  
     /**
      * Remove the specified resource from storage.
      *
